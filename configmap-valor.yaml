@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  APP_NAME_CONFIG: "ConfigMap Manifesto"
+  APP_VERSION_CONFIG: "6.0"
+  APP_AUTHOR_CONFIG: "Natalia"
