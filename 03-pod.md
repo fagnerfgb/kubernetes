@@ -5,8 +5,8 @@
 
 ### Criando Pods
 
-### pod.yaml
-[pod](pod.yaml)
+### 03-pod.yaml
+[03-pod](03-pod.yaml)
 
 ```bash
 # Cria um cluster Kubernetes usando k3d, chamado "meucluster", com 3 nós de servidor e 3 nós de agente (worker nodes).
@@ -16,7 +16,7 @@ k3d cluster create meucluster --servers 3 --agents 3
 kubectl api-resources
 
 # Aplica a configuração do arquivo "pod.yaml", criando ou atualizando os recursos definidos nele.
-kubectl apply -f pod.yaml
+kubectl apply -f 03-pod.yaml
 
 # Lista todos os pods no namespace atual.
 kubectl get pods
@@ -27,18 +27,18 @@ kubectl get all
 # Comando abreviado para listar os pods (po é um alias para pods).
 kubectl get po
 
-# Exibe detalhes completos sobre o pod chamado "meupod", incluindo eventos e status dos contêineres.
-kubectl describe pod meupod
+# Exibe detalhes completos sobre o pod chamado "web-color", incluindo eventos e status dos contêineres.
+kubectl describe pod web-color
 
-# Redireciona o tráfego da porta 8080 da máquina local para a porta 80 do pod "meupod".
-kubectl port-forward pod/meupod 8080:80
+# Redireciona o tráfego da porta 8080 da máquina local para a porta 80 do pod "web-color".
+kubectl port-forward pod/web-color 8080:80
 
 # Lista os pods com informações adicionais, como o nó em que estão sendo executados e o IP atribuído.
 kubectl get pods -o wide
 
-# Exclui o pod chamado "meupod".
-kubectl delete pod meupod
+# Exclui o pod chamado "web-color".
+kubectl delete pod web-color
 
-# Lista novamente os pods para verificar se "meupod" foi removido.
+# Lista novamente os pods para verificar se "web-color" foi removido.
 kubectl get pods
 ```

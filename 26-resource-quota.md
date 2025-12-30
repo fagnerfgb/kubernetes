@@ -57,4 +57,5 @@ kubectl describe replicaset
 
 kubectl delete -f deploy-quota3.yaml
 kubectl delete -f quota2.yaml
+k3d cluster delete meucluster
 ```

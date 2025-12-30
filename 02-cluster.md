@@ -70,6 +70,9 @@ k3d cluster delete fgb-cluster
 
 ### Criando um cluster Kubernetes com bind de porta no Loadbalancer
 
+### 02-cluster.yaml
+[02-cluster](02-cluster.yaml)
+
 ```bash
 
 # Cria um cluster Kubernetes chamado "fgb-cluster" com:
@@ -84,8 +87,8 @@ kubectl get nodes
 # Lista todos os contêineres em execução no Docker, incluindo os nós do cluster k3d.
 docker container ls
 
-# Aplica a configuração do arquivo "deploy.yaml", criando ou atualizando os recursos definidos nele (como Deployments, Services, etc.).
-kubectl apply -f teste.yaml
+# Aplica a configuração do arquivo "02-cluster.yaml", criando ou atualizando os recursos definidos nele (como Deployments, Services, etc.).
+kubectl apply -f 02-cluster.yaml
 
 # Lista todos os recursos no namespace atual, incluindo pods, serviços, deployments, replicasets e outros objetos.
 kubectl get all
@@ -93,4 +96,3 @@ kubectl get all
 # Exclui o cluster chamado "fgb-cluster", removendo todos os seus nós e contêineres associados.
 k3d cluster delete fgb-cluster
 ```
-

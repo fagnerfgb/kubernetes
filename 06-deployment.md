@@ -4,25 +4,25 @@
 #Versão: 0.01  
 
 ### Deployment
-### deployment.yaml
-[deployment](deployment.yaml)
+### 06-deployment.yaml
+[06-deployment](06-deployment.yaml)
 
 ```bash
-kubectl apply -f deployment.yaml 
+kubectl apply -f 06-deployment.yaml
 
 kubectl get po
 
 kubectl get all
 
-kubectl describe deploy meudeployment
+kubectl describe deploy meudeployment | grep Image
 
-kubectl apply -f deployment.yaml && watch 'kubectl get po'
+kubectl port-forward $(kubectl get pods --sort-by=.metadata.creationTimestamp -o name | head -n 1) 8080:80
 
-kubectl describe deploy meudeployment
+kubectl apply -f 06-deployment.yaml && watch 'kubectl get po'
 
-kubectl get po
+kubectl describe deploy meudeployment | grep Image
 
-kubectl port-forward pod/meudeployment-54d6d7db5b-4b67n 8080:80
+kubectl port-forward $(kubectl get pods --sort-by=.metadata.creationTimestamp -o name | head -n 1) 8080:80
 ```
 
 ### Rollout
@@ -30,15 +30,15 @@ kubectl port-forward pod/meudeployment-54d6d7db5b-4b67n 8080:80
 ```bash
 kubectl get rs
 
-kubectl rollout history deployment meudeployment
+kubectl rollout history 06-deployment meu06-deployment
 
-kubectl apply -f deployment.yaml && watch 'kubectl get deploy,rs,pod'
+kubectl apply -f 06-deployment.yaml && watch 'kubectl get deploy,rs,pod'
 
-kubectl rollout history deployment meudeployment
+kubectl rollout history 06-deployment meu06-deployment
 
-kubectl rollout undo deploy meudeployment && watch 'kubectl get deploy,rs,pod'
+kubectl rollout undo deploy meu06-deployment && watch 'kubectl get deploy,rs,pod'
 
-kubectl delete -f deployment.yaml
+kubectl delete -f 06-deployment.yaml
 
 k3d cluster delete meucluster 
 ```

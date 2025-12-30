@@ -4,12 +4,12 @@
 #Versão: 0.01
 
 ### Labels Selector
-### pod01.yaml
-[pod01](pod01.yaml)
+### 05-labels-selector.yaml
+[05-labels-selector](05-labels-selector.yaml)
 
 ```bash
-# Aplica a configuração do arquivo "pod01.yaml", criando ou atualizando o pod definido nele.
-kubectl apply -f pod01.yaml
+# Aplica a configuração do arquivo "05-labels-selector.yaml", criando ou atualizando o pod definido nele.
+kubectl apply -f 05-labels-selector.yaml
 
 # Lista todos os pods no namespace atual.
 kubectl get pods
@@ -23,6 +23,6 @@ kubectl get pods -l versao=blue
 # Lista apenas os pods que possuem o rótulo (label) "versao=green".
 kubectl get pods -l versao=green
 
-# Exclui os recursos definidos no arquivo "pod01.yaml", removendo o pod correspondente.
-kubectl delete -f pod01.yaml
+# Exclui os recursos definidos no arquivo "05-labels-selector.yaml", removendo o pod correspondente.
+kubectl delete -f 05-labels-selector.yaml
 ```
