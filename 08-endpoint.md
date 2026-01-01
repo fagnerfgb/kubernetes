@@ -5,13 +5,13 @@
 
 ## Endpoint
 
-### endpoint.yaml
-[endpoint](endpoint.yaml)
+### 08-endpoint.yaml
+[endpoint](08-endpoint.yaml)
 
 ```bash
 k3d cluster create meucluster --servers 3 --agents 3 -p "30000:30000@loadbalancer"
 
-kubectl apply -f endpoint.yaml
+kubectl apply -f 08-endpoint.yaml
 
 kubectl get po
 
@@ -26,6 +26,6 @@ kubectl get endpointslice
 ```
 
 ```bash
-kubectl delete -f endpoint.yaml
+kubectl delete -f 08-endpoint.yaml
 k3d cluster delete meucluster
 ```

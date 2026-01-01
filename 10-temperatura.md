@@ -18,13 +18,7 @@ docker image ls | grep temperatura
 
 kubectl apply -f ./projetos/celsius-farenheit/k8s/deployment.yaml
 
-kubectl get pods
-
-kubectl get deploy
-
-kubectl get replicaset
-
-kubectl get all
+watch 'kubectl get all'
 
 kubectl delete -f ./projetos/celsius-farenheit/k8s/deployment.yaml
 

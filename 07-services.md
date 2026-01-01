@@ -5,19 +5,15 @@
 
 ## Services
 ### ClusterIP
-### clusterip.yaml
-[clusterip](clusterip.yaml)
+### 07-clusterip.yaml
+[clusterip](07-clusterip.yaml)
 
 ```bash
 k3d cluster create meucluster --servers 3 --agents 3
 
-kubectl apply -f clusterip.yaml
+kubectl apply -f 07-clusterip.yaml
 
-kubectl get po
-
-kubectl get service
-
-kubectl get po
+watch 'kubectl get svc,po'
 
 kubectl run prompt -it --image ubuntu -- /bin/bash
 ```
@@ -33,31 +29,29 @@ exit
 ```
 
 ```bash
-kubectl delete -f clusterip.yaml
+kubectl delete -f 07-clusterip.yaml
 ```
 
 ### NodePort
-### nodeport.yaml
-[nodeport](nodeport.yaml)
+### 07-nodeport.yaml
+[nodeport](07-nodeport.yaml)
 
 ```bash
-kubectl apply -f nodeport.yaml 
+kubectl apply -f 07-nodeport.yaml
 
 kubectl get service
 
-docker container ls
+docker inspect k3d-meucluster-agent-0 | grep IPAddress
 
-docker inspect 61eb30cd6216 
+kubectl get service webcolor
 
-kubectl get service
-
-kubectl delete -f nodeport.yaml
+kubectl delete -f 07-nodeport.yaml
 
 k3d cluster delete meucluster
 ```
 
-### nodeport1.yaml
-[nodeport1](nodeport1.yaml)
+### 07-nodeport1.yaml
+[nodeport1](07-nodeport1.yaml)
 
 ```bash
 k3d cluster create meucluster --servers 3 --agents 3 -p "30000:30000@loadbalancer"
@@ -66,7 +60,7 @@ kubectl get no
 
 docker container ls
 
-kubectl apply -f nodeport1.yaml
+kubectl apply -f 07-nodeport1.yaml
 
 kubectl run prompt --rm -it --image ubuntu -- /bin/bash
 ```
@@ -80,6 +74,6 @@ exit
 ```
 
 ```bash
-kubectl delete -f nodeport1.yaml
+kubectl delete -f 07-nodeport1.yaml
 k3d cluster delete meucluster
 ```

@@ -27,7 +27,7 @@ kind delete cluster --name meucluster
 
 ### Criando um cluster com arquivo de configuração
 ```bash
-kind create cluster --name meucluster --config kind-config.yaml
+kind create cluster --name meucluster --config 12-kind-config.yaml
 kubectl get nodes
 kind get clusters
 kubectl apply -f ./projetos/celsius-farenheit/k8s/deployment.yaml
@@ -37,7 +37,7 @@ kind delete cluster --name meucluster
 
 ### Criando um cluster com HA
 ```bash
-kind create cluster --name meucluster --config kind-config.yaml
+kind create cluster --name meucluster --config 12-kind-config2.yaml
 kubectl get nodes
 kubectl apply -f ./projetos/celsius-farenheit/k8s/deployment.yaml
 kubectl port-forward service/conversaotemperatura 8080:80
@@ -46,7 +46,7 @@ kind delete cluster --name meucluster
 
 ### Criando um cluster com HA e Bind de porta
 ```bash
-kind create cluster --name meucluster --config kind-config.yaml
+kind create cluster --name meucluster --config 12-kind-config3.yaml
 kubectl get nodes
 kubectl apply -f ./projetos/celsius-farenheit/k8s/deployment.yaml
 kind delete cluster --name meucluster
@@ -58,7 +58,7 @@ https://github.com/kubernetes-sigs/kind/releases
 
 ```bash
 kind --version
-kind create cluster --name meucluster --config kind-config.yaml
+kind create cluster --name meucluster --config 12-kind-config4.yaml
 kubectl get nodes
 kubectl apply -f ./projetos/celsius-farenheit/k8s/deployment.yaml
 kind delete cluster --name meucluster
@@ -67,7 +67,7 @@ kind delete cluster --name meucluster
 ### Definindo o tipo do CNI
 
 ```bash
-kind create cluster --name meucluster --config kind-config.yaml
+kind create cluster --name meucluster --config 12-kind-config5.yaml
 kubectl get nodes
 kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.4/manifests/calico.yaml
 kubectl get nodes
@@ -78,11 +78,10 @@ kind delete cluster --name meucluster
 ### Pegando imagem local e colocando no cluster
 
 ```bash
-kind create cluster --name meucluster --config kind-config.yaml
+kind create cluster --name meucluster --config 12-kind-config5.yaml
 kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.4/manifests/calico.yaml
 kubectl get nodes
 kind load --name meucluster docker-image fagnerfgb/temperatura-kind:v1
 kubectl apply -f ./projetos/celsius-farenheit/k8s/deployment-local-image.yaml
 kind delete cluster --name meucluster
 ```
-

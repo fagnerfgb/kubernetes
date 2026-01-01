@@ -30,15 +30,15 @@ kubectl port-forward $(kubectl get pods --sort-by=.metadata.creationTimestamp -o
 ```bash
 kubectl get rs
 
-kubectl rollout history 06-deployment meu06-deployment
+kubectl rollout history deployment meudeployment
 
 kubectl apply -f 06-deployment.yaml && watch 'kubectl get deploy,rs,pod'
 
-kubectl rollout history 06-deployment meu06-deployment
+kubectl rollout history deployment meudeployment
 
-kubectl rollout undo deploy meu06-deployment && watch 'kubectl get deploy,rs,pod'
+kubectl rollout undo deploy meudeployment && watch 'kubectl get deploy,rs,pod'
 
 kubectl delete -f 06-deployment.yaml
 
-k3d cluster delete meucluster 
+k3d cluster delete meucluster
 ```
