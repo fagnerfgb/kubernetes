@@ -9,7 +9,7 @@
 k3d cluster create fgb-cluster --servers 3 --agents 3 -p "30000:30000@loadbalancer"
 ```
 ```bash
-kubectl apply -f env.yaml
+kubectl apply -f 13-env.yaml
 watch 'kubectl get pods'
 ```
 
@@ -29,15 +29,16 @@ kubectl delete configmap app-config
 ```
 
 ```bash
-echo "Fagner Geraldes Braga" > arquivo.config
-kubectl create configmap app-config --from-literal=APP_NAME="App de Teste" --from-literal=APP_VERSION="4.0" --from-file arquivo.config
+echo "Fagner Geraldes Braga" > 13-arquivo.config
+kubectl create configmap app-config --from-literal=APP_NAME="App de Teste" --from-literal=APP_VERSION="4.0" --from-file 13-arquivo.config
+kubectl describe configmap app-config
 kubectl delete configmap app-config
 ```
 
 ### Manifesto
 
 ```bash
-kubectl apply -f configmap.yaml
+kubectl apply -f 13-configmap.yaml
 kubectl get configmap
 kubectl describe configmap app-config
 kubectl delete configmap app-config
@@ -45,18 +46,18 @@ kubectl delete configmap app-config
 
 ### ConfigMap definido por referência
 ```bash
-kubectl apply -f configmap.yaml
-kubectl apply -f deploy-configmap-referencia.yaml
-kubectl delete -f deploy-configmap-referencia.yaml
+kubectl apply -f 13-configmap.yaml
+kubectl apply -f 13-deploy-configmap-referencia.yaml
+kubectl delete -f 13-deploy-configmap-referencia.yaml
 kubectl delete configmap app-config
 ```
 
 ### ConfigMap definido por valor
 ```bash
-kubectl apply -f configmap-valor.yaml
-kubectl apply -f deploy-configmap-valor.yaml
+kubectl apply -f 13-configmap-valor.yaml
+kubectl apply -f 13-deploy-configmap-valor.yaml
 
-kubectl delete -f deploy-configmap-valor.yaml
+kubectl delete -f 13-deploy-configmap-valor.yaml
 kubectl delete configmap app-config
 ```
 

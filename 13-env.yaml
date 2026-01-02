@@ -18,23 +18,12 @@ spec:
         ports:
         - containerPort: 3000
         env:
-          - name: APP_NAME
-            valueFrom:
-              configMapKeyRef:
-                name: app-config
-                key: APP_NAME_CONFIG
-          - name: APP_VERSION
-            valueFrom:
-              configMapKeyRef:
-                name: app-config
-                key: APP_VERSION_CONFIG
-          - name: APP_AUTHOR
-            valueFrom:
-              configMapKeyRef:
-                name: app-config
-                key: APP_AUTHOR_CONFIG
-
-
+        - name: APP_NAME
+          value: "Meu App Kubernetes"
+        - name: APP_VERSION
+          value: "5.0"
+        - name: APP_AUTHOR
+          value: "Fagner Geraldes Braga"
 ---
 apiVersion: v1
 kind: Service
@@ -50,4 +39,3 @@ spec:
     name: http
     protocol: TCP
     nodePort: 30000
-
