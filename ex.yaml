@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-web
+spec:
+  containers:
+  - name: srv-web
+    image: kubedevio/web-color:green
+    ports:
+      - name: http
+        containerPort: 80
+        protocol: TCP
