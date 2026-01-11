@@ -25,9 +25,13 @@ spec:
             cpu: 100m
           limits:
             memory: 200M
-            cpu: 100m
-      - name: nginx
-        image: nginx
+            cpu: 125m
+      - name: web2
+        image: kubedevio/web-color:green
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
         resources:
           requests:
             memory: 150M

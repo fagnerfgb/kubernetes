@@ -71,25 +71,25 @@ kubectl delete -f 24-resources-requests2.yaml
 ### Guaranteed
 
 ```bash
-kubectl apply -f qos-guaranteed.yaml
+kubectl apply -f 24-qos-guaranteed.yaml
 watch 'kubectl get pod'
 kubectl describe pod | grep 'QoS Class:'
-kubectl delete -f qos-guaranteed.yaml
+kubectl delete -f 24-qos-guaranteed.yaml
 ```
 
 ### Burstable
 
 ```bash
-kubectl apply -f qos-burstable.yaml
+kubectl apply -f 24-qos-burstable.yaml
 kubectl describe pod | grep 'QoS Class:'
-kubectl delete -f qos-burstable.yaml
+kubectl delete -f 24-qos-burstable.yaml
 ```
 
 ### Best Effort
 
 ```bash
-kubectl apply -f qos-best-effort.yaml
+kubectl apply -f 24-qos-best-effort.yaml
 kubectl describe pod | grep 'QoS Class:'
-kubectl delete -f qos-best-effort.yaml
+kubectl delete -f 24-qos-best-effort.yaml
 k3d cluster delete meucluster
 ```
