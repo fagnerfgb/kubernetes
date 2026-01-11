@@ -13,16 +13,16 @@ Autor: Fagner Geraldes
 k3d cluster create meucluster --servers 3 --agents 3 -p "5432:30000@loadbalancer"
 kubectl get nodes
 
-kubectl apply -f hostpath.yaml
+kubectl apply -f 27-hostpath.yaml
 kubectl delete $(kubectl get pod -o name)
 kubectl get pod
-kubectl apply -f hostpath.yaml
+kubectl apply -f 27-hostpath.yaml
 kubectl get pod
 kubectl get pod -o wide
 kubectl delete $(kubectl get pod -o name)
 kubectl get pod
 kubectl get pod -o wide
-kubectl delete -f hostpath.yaml
+kubectl delete -f 27-hostpath.yaml
 ```
 
 ### NFS
@@ -60,18 +60,18 @@ sudo systemctl restart nfs-kernel-server
 ```
 
 ```bash
-kubectl apply -f pv.yaml
+kubectl apply -f 27-pv.yaml
 kubectl get persistentvolume
 kubectl describe persistentvolume
 
-kubectl apply -f nfs.yaml
+kubectl apply -f 27-nfs.yaml
 kubectl get persistentvolumeclaim
 kubectl describe persistentvolumeclaim
 
 watch 'kubectl get pod'
 
-kubectl delete -f nfs.yaml
-kubectl delete -f pv.yaml
+kubectl delete -f 27-nfs.yaml
+kubectl delete -f 27-pv.yaml
 
 ```
 k3d cluster delete meucluster
