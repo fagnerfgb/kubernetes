@@ -10,7 +10,7 @@ spec:
   persistentVolumeReclaimPolicy: Delete
   storageClassName: nfs-static-storage
   nfs:
-    server: 172.19.0.200
+    server: 192.168.2.166
     path: /mnt/nfs_shared
   mountOptions:
     - nfsvers=4.2

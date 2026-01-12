@@ -14,13 +14,9 @@ k3d cluster create meucluster --servers 3 --agents 3 -p "5432:30000@loadbalancer
 kubectl get nodes
 
 kubectl apply -f 27-hostpath.yaml
+watch 'kubectl get pod'
 kubectl delete $(kubectl get pod -o name)
-kubectl get pod
-kubectl apply -f 27-hostpath.yaml
-kubectl get pod
-kubectl get pod -o wide
-kubectl delete $(kubectl get pod -o name)
-kubectl get pod
+watch 'kubectl get pod'
 kubectl get pod -o wide
 kubectl delete -f 27-hostpath.yaml
 ```
@@ -28,8 +24,12 @@ kubectl delete -f 27-hostpath.yaml
 ### NFS
 
 ```bash
+
+# Criei um VM com o Ubuntu e usei a placa de rede em modo bridge e com IP dinâmico para testar
+# Colocar o IP da VM no arquivo 27-pv.yaml
+
 #Primeiro eu devo instalar o NFS kernel server
-sudo apt update && sudo apt install nfs-kernel-server --yes
+sudo apt update && sudo apt install nfs-kernel-server -y
 
 #Crio o diretório que quero compartilhar
 
@@ -70,8 +70,13 @@ kubectl describe persistentvolumeclaim
 
 watch 'kubectl get pod'
 
+kubectl delete $(kubectl get pod -o name)
+
+watch 'kubectl get pod'
+
 kubectl delete -f 27-nfs.yaml
 kubectl delete -f 27-pv.yaml
 
-```
 k3d cluster delete meucluster
+```
+
