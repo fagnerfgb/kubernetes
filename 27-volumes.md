@@ -76,7 +76,88 @@ watch 'kubectl get pod'
 
 kubectl delete -f 27-nfs.yaml
 kubectl delete -f 27-pv.yaml
+```
 
+### Storage Class
+
+```bash
+kubectl get storageclass
+kubectl get nodes
+kubectl apply -f 27-storage-class.yaml
+kubectl get pv
+kubectl get pvc
+watch 'kubectl get pod'
+kubectl delete $(kubectl get pod -o name)
+watch 'kubectl get pod'
+kubectl delete -f 27-storage-class.yaml
+```
+
+### Limit Range
+
+```bash
+kubectl apply -f 27-limit.yaml
+kubectl get limitrange
+kubectl describe limitrange storagelimit
+kubectl apply -f 27-storage-class.yaml
+kubectl delete -f 27-limit.yaml
+
+kubectl apply -f 27-limit2.yaml
+kubectl get limitrange
+kubectl describe limitrange storagelimit
+kubectl apply -f 27-storage-class.yaml
+kubectl delete -f 27-storage-class.yaml
+kubectl delete -f 27-limit2.yaml
+```
+
+### Resource Quota
+
+```bash
+# 1 Storage de 4GB - OK
+kubectl apply -f 27-resource-quota.yaml
+kubectl apply -f 27-storage-class.yaml
+kubectl get resourcequota
+kubectl get pods
+kubectl delete -f 27-storage-class.yaml
+```
+
+```bash
+# 2 Storages de 4GB cada - Excede a capacidade
+kubectl apply -f 27-storage-class2.yaml
+```
+
+```bash
+# 3 Storages - Excede a quantidade de pvc
+kubectl apply -f 27-storage-class3.yaml
+kubectl delete -f 27-storage-class3.yaml
+kubectl delete -f 27-resource-quota.yaml
 k3d cluster delete meucluster
 ```
 
+### Configmap com Volume
+
+```bash
+k3d cluster create meucluster --servers 3 --agents 3 -p "30000:30000@loadbalancer"
+kubectl apply -f 27-configmap.yaml
+kubectl get pod
+
+kubectl create configmap pagina-nginx --from-file ./index.html
+kubectl get configmap
+kubectl describe configmap pagina-nginx
+kubectl apply -f 27-configmap.yaml
+kubectl get pod
+kubectl delete -f 27-configmap.yaml
+kubectl delete configmap pagina-nginx
+```
+
+### Secret com Volume
+
+```bash
+kubectl create secret generic pagina-nginx --from-file ./index.html
+kubectl get secret
+kubectl describe secret pagina-nginx
+kubectl apply -f 27-secret.yaml
+kubectl get pod
+kubectl delete -f 27-secret.yaml
+kubectl delete secret pagina-nginx
+k3d cluster delete meucluster
+```
