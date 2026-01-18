@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nginx
+spec:
+  persistentVolumeClaimRetentionPolicy:
+    whenScaled: Delete
+    whenDeleted: Retain
+  serviceName: nginx
+  selector:
+    matchLabels:
+      app: nginx-state
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: nginx-state
+    spec:
+      initContainers: 
+        - name: volume-page
+          image: busybox
+          command: ['sh', '-c', 'echo $(hostname) > /app/index.html']
+          volumeMounts:
+            - mountPath: /app
+              name: www
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+          name: web
+        volumeMounts:
+          - mountPath: /usr/share/nginx/html
+            name: www
+  volumeClaimTemplates:
+    - metadata:
+        name: www
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: local-path
+        resources:
+          requests:
+            storage: 1Gi
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+spec:
+  selector:
+    app: nginx-state
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30000
+  type: NodePort

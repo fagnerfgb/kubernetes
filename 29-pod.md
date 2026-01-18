@@ -1,4 +1,4 @@
-Autor: Fagner Geraldes 
+#Autor: Fagner Geraldes 
 #Data de criação: 17/01/2026  
 #Data de atualização: 17/01/2026  
 #Versão: 0.01  
@@ -43,5 +43,5 @@ kubectl apply -f 29-inicial.yaml
 kubectl apply -f 29-init-container.yaml && watch 'kubectl get pod'
 kubectl get $(kubectl get pod -o name | grep nginx) -o yaml | grep initContainerStatuses: -A 20
 kubectl delete -f "29-ini*.yaml"
-kind delete cluster --name meucluster
+k3d cluster delete meucluster
 ```

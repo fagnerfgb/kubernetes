@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sorteador
+spec:
+  ttlSecondsAfterFinished: 60
+  completions: 2
+  parallelism: 2
+  backoffLimit: 6
+  template:
+    metadata:
+      labels:
+        app: sorteador
+    spec:
+      containers:
+      - name: sorteador
+        image: fabricioveronez/sorteador:v1
+        env:
+          - name: NUM_ESCOLHIDO
+            value: "1"
+          - name: NUM_MAXIMO
+            value: "1"
+          - name: DELAY_SORTEIO
+            value: "10"
+      restartPolicy: Never
