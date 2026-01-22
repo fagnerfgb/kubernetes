@@ -99,3 +99,36 @@ kubectl apply -f 31-node-affinity3.yaml && watch 'kubectl get pod -o wide'
 kubectl delete -f 31-node-affinity3.yaml
 k3d cluster delete meucluster
 ```
+
+### Pod Anti Affinity
+
+```bash
+k3d cluster create meucluster --servers 1 --agents 6 -p "30000:30000@loadbalancer"
+
+kubectl apply -f 31-pod-anti-affinity.yaml && watch 'kubectl get pod -o wide'
+kubectl delete -f 31-pod-anti-affinity.yaml
+```
+
+### Pod Affinity
+
+```bash
+kubectl apply -f 31-pod-affinity.yaml && watch 'kubectl get pod -o wide'
+kubectl apply -f 31-pod-affinity2.yaml && watch 'kubectl get pod -o wide'
+kubectl delete -f '31-pod-af*.yaml'
+```
+
+### Taint e Tolerations
+
+```bash
+kubectl describe nodes | grep Taints:
+kubectl taint node k3d-meucluster-agent-0  gpu=true:NoSchedule
+kubectl describe node k3d-meucluster-agent-0  | grep Taints:
+kubectl apply -f 31-taint.yaml && watch 'kubectl get pods -o wide'
+kubectl apply -f 31-taint2.yaml && watch 'kubectl get pods -o wide'
+kubectl taint node k3d-meucluster-agent-0 xpto=true:NoExecute
+kubectl describe node k3d-meucluster-agent-0  | grep Taints: -A 2
+kubectl get pod -o wide
+kubectl taint node k3d-meucluster-agent-0  gpu- && kubectl taint node k3d-meucluster-agent-0  xpto- && watch 'kubectl get pod -o wide'
+kubectl delete -f 31-taint2.yaml
+k3d cluster delete meucluster
+```
