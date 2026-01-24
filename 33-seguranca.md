@@ -167,3 +167,108 @@ kubectl apply -f 33-rbac5.yaml && watch 'kubectl get pods'
 kubectl delete -f 33-rbac5.yaml
 k3d cluster delete meucluster
 ```
+
+### Network policy
+
+### Policy Simples
+
+```bash
+kind create cluster --config 33-kind-cluster.yaml
+kubectl get nodes
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.3/manifests/tigera-operator.yaml
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.3/manifests/custom-resources.yaml
+watch 'kubectl get nodes'
+kubectl apply -f 33-deployment.yaml && watch 'kubectl get all'
+kubectl get ns
+kubectl run curl --image fabricioveronez/ubuntu-curl -it --rm -- /bin/bash
+```
+
+```bash
+curl http://nginx
+```
+
+```bash
+kubectl apply -f 33-network-policy.yaml && watch 'kubectl get all'
+```
+
+```bash
+curl http://nginx
+```
+
+```bash
+kubectl describe pod curl | grep Labels:
+```
+
+```bash
+exit
+```
+
+```bash
+kubectl run curl --image fabricioveronez/ubuntu-curl -it --rm -l app=curl -- /bin/bash
+```
+
+```bash
+curl http://nginx
+```
+
+```bash
+kubectl describe pod curl | grep Labels:
+```
+
+```bash
+exit
+```
+
+```bash
+kubectl delete -f 33-network-policy.yaml
+kubectl delete -f 33-deployment.yaml
+```
+
+### Policy com restrição do namespace
+
+```bash
+kubectl apply -f 33-deployment.yaml && watch 'kubectl get all'
+kubectl run curl --image fabricioveronez/ubuntu-curl -it --rm -- /bin/bash
+```
+
+```bash
+curl http://web.web-color.svc.cluster.local
+```
+
+```bash
+kubectl apply -f 33-network-policy2.yaml
+```
+
+```bash
+curl http://web.web-color.svc.cluster.local
+exit
+```
+
+```bash
+kubectl run curl --image fabricioveronez/ubuntu-curl -it --rm -l app=curl -n web-color -- /bin/bash
+```
+
+```bash
+curl http://web
+exit
+```
+
+```bash
+kubectl delete -f 33-network-policy2.yaml
+kubectl delete -f 33-deployment.yaml
+
+kubectl apply -f 33-deployment2.yaml && watch 'kubectl get all'
+kubectl apply -f 33-network-policy3.yaml
+kubectl run curl --image fabricioveronez/ubuntu-curl -it --rm -l app=curl -n curl -- /bin/bash
+```
+
+```bash
+curl http://web.web-color.svc.cluster.local
+exit
+```
+
+```bash
+kubectl delete -f 33-network-policy3.yaml
+kubectl delete -f 33-deployment2.yaml
+kind delete cluster --name meucluster
+```

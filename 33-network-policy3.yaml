@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: web-color-policy
+  namespace: web-color
+spec:
+  podSelector:
+    matchLabels:
+      app: web
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: curl
+      namespaceSelector:
+        matchLabels:
+          env: curl
+    ports:
+    - protocol: TCP
+      port: 80
