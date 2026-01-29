@@ -23,7 +23,7 @@ docker pull fagnerfgb/web-color-priv:blue && docker pull fagnerfgb/web-color-pri
 
 ```bash
 k3d cluster create meucluster --servers 3 --agents 3 -p "30000:30000@loadbalancer"
-kubectl create secret docker-registry docker-auth --docker-server=https://index.docker.io/v1/ --docker-username=fagnerfgb --docker-password=123@senac --docker-email=fagner.fgb@gmail.com
+kubectl create secret generic docker-auth --from-file=.dockerconfigjson=/home/fagner/.docker/config.json
 kubectl get secret
 kubectl get secret docker-auth -o yaml
 ```
