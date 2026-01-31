@@ -1,9 +1,9 @@
-#Autor: Fagner Geraldes 
-#Data de criação: 02/04/2025  
-#Data de atualização: 02/04/2025  
-#Versão: 0.01  
+# Conversão Temperatura
 
-## Conversão Temperatura
+**Autor:** Fagner Geraldes Braga  
+**Data de criação:** 02/04/2025  
+**Data de atualização:** 31/01/2026  
+**Versão:** 0.02  
 
 ```bash
 k3d cluster create meucluster --servers 3 --agents 3 -p "30000:30000@loadbalancer"

@@ -1,9 +1,11 @@
-#Autor: Fagner Geraldes Braga  
-#Data de criação: 28/03/2025  
-#Data de atualização: 28/03/2025  
-#Versão: 0.01
+# Criação do cluster
 
-### Criando o primeiro cluster Kubernetes
+**Autor:** Fagner Geraldes Braga  
+**Data de criação:** 28/03/2025  
+**Data de atualização:** 31/01/2026  
+**Versão:** 0.02  
+
+## Criando o primeiro cluster Kubernetes
 
 ```bash
 # Cria um cluster Kubernetes utilizando k3d com a configuração padrão (geralmente um único nó mestre e um nó agente).
@@ -28,7 +30,7 @@ k3d cluster list
 k3d cluster delete
 ```
 
-### Criando um cluster Kubernetes sem Loadbalancer
+## Criando um cluster Kubernetes sem Loadbalancer
 
 ```bash
 
@@ -48,7 +50,7 @@ kubectl get nodes
 k3d cluster delete fgb-cluster
 ```
 
-### Criando um cluster Kubernetes com 3 Servidores e 3 Agentes
+## Criando um cluster Kubernetes com 3 Servidores e 3 Agentes
 
 ```bash
 
@@ -68,9 +70,10 @@ k3d cluster list
 k3d cluster delete fgb-cluster
 ```
 
-### Criando um cluster Kubernetes com bind de porta no Loadbalancer
+## Criando um cluster Kubernetes com bind de porta no Loadbalancer
 
 ### 02-cluster.yaml
+
 [02-cluster](02-cluster.yaml)
 
 ```bash

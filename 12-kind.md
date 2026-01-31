@@ -1,9 +1,9 @@
-#Autor: Fagner Geraldes 
-#Data de criação: 11/10/2025  
-#Data de atualização: 11/10/2025  
-#Versão: 0.01  
+# Instalação do Kind
 
-## Instalação
+**Autor:** Fagner Geraldes Braga  
+**Data de criação:** 11/10/2025  
+**Data de atualização:** 31/01/2026  
+**Versão:** 0.02  
 
 ```bash
 # For AMD64 / x86_64
@@ -14,7 +14,8 @@ chmod +x ./kind
 sudo mv ./kind /usr/local/bin/kind
 ```
 
-### Criando um cluster Simples
+## Criando um cluster Simples
+
 ```bash
 kind create cluster
 kubectl get nodes
@@ -25,7 +26,8 @@ kind delete cluster
 kind delete cluster --name meucluster
 ```
 
-### Criando um cluster com arquivo de configuração
+## Criando um cluster com arquivo de configuração
+
 ```bash
 kind create cluster --name meucluster --config 12-kind-config.yaml
 kubectl get nodes
@@ -35,7 +37,8 @@ kubectl port-forward service/conversaotemperatura 8080:80
 kind delete cluster --name meucluster
 ```
 
-### Criando um cluster com HA
+## Criando um cluster com HA
+
 ```bash
 kind create cluster --name meucluster --config 12-kind-config2.yaml
 kubectl get nodes
@@ -44,7 +47,8 @@ kubectl port-forward service/conversaotemperatura 8080:80
 kind delete cluster --name meucluster
 ```
 
-### Criando um cluster com HA e Bind de porta
+## Criando um cluster com HA e Bind de porta
+
 ```bash
 kind create cluster --name meucluster --config 12-kind-config3.yaml
 kubectl get nodes
@@ -52,9 +56,9 @@ kubectl apply -f ./projetos/celsius-farenheit/k8s/deployment.yaml
 kind delete cluster --name meucluster
 ```
 
-### Definindo a versão do cluster Kubernetes
+## Definindo a versão do cluster Kubernetes
 
-https://github.com/kubernetes-sigs/kind/releases
+[Versões do Kind](https://github.com/kubernetes-sigs/kind/releases)
 
 ```bash
 kind --version
@@ -64,7 +68,7 @@ kubectl apply -f ./projetos/celsius-farenheit/k8s/deployment.yaml
 kind delete cluster --name meucluster
 ```
 
-### Definindo o tipo do CNI
+## Definindo o tipo do CNI
 
 ```bash
 kind create cluster --name meucluster --config 12-kind-config5.yaml
@@ -75,7 +79,7 @@ kubectl apply -f ./projetos/celsius-farenheit/k8s/deployment.yaml
 kind delete cluster --name meucluster
 ```
 
-### Pegando imagem local e colocando no cluster
+## Pegando imagem local e colocando no cluster
 
 ```bash
 kind create cluster --name meucluster --config 12-kind-config5.yaml

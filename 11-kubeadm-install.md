@@ -1,9 +1,9 @@
-#Autor: Fagner Geraldes 
-#Data de criação: 10/10/2025  
-#Data de atualização: 11/10/2025  
-#Versão: 0.02  
+# Instalação do Kubeadm
 
-## Instalação do Kubeadm (Nas 3 Máquinas)
+**Autor:** Fagner Geraldes Braga  
+**Data de criação:** 10/10/2025  
+**Data de atualização:** 31/01/2026  
+**Versão:** 0.03  
 
 ```bash
 sudo swapoff -a
@@ -22,7 +22,7 @@ sudo modprobe br_netfilter
 ```
 
 ```bash
-# Configuração dos parâmetros do sysctl, fica mantido mesmo com reebot da máquina.
+# Configuração dos parâmetros do sysctl, fica mantido mesmo com reboot da máquina.
 cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
 net.bridge.bridge-nf-call-iptables  = 1
 net.ipv4.ip_forward                 = 1
@@ -75,13 +75,15 @@ curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.34/deb/Release.key | sudo gpg --
 ```bash
 echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.34/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
+
 ```bash
 sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
-### No Control Plane
+## No Control Plane
+
 ```bash
 sudo kubeadm init
 ```
@@ -96,12 +98,14 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 kubeadm token create --print-join-command
 ```
 
-### Nos Worker Nodes
+## Nos Worker Nodes
+
 ```bash
 sudo kubeadm join 192.168.2.151:6443 --token 9u9klh.ge5ujz3pzcg2hlev --discovery-token-ca-cert-hash sha256:b5d422e117ed86aa313a659b1046801c81d6aba369754275e4bfb88b10c5fd5d
 ```
 
-### No Control Plane
+## No Control Plane novamente
+
 ```bash
 sudo kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/manifests/calico.yaml
 ```

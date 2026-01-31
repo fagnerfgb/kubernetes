@@ -1,11 +1,14 @@
-#Autor: Fagner Geraldes 
-#Data de criação: 01/04/2025  
-#Data de atualização: 01/04/2025  
-#Versão: 0.01  
+# Services
 
-## Services
-### ClusterIP
+**Autor:** Fagner Geraldes Braga  
+**Data de criação:** 01/04/2025  
+**Data de atualização:** 31/01/2026  
+**Versão:** 0.02  
+
+## ClusterIP
+
 ### 07-clusterip.yaml
+
 [clusterip](07-clusterip.yaml)
 
 ```bash
@@ -32,8 +35,10 @@ exit
 kubectl delete -f 07-clusterip.yaml
 ```
 
-### NodePort
+## NodePort
+
 ### 07-nodeport.yaml
+
 [nodeport](07-nodeport.yaml)
 
 ```bash
@@ -51,6 +56,7 @@ k3d cluster delete meucluster
 ```
 
 ### 07-nodeport1.yaml
+
 [nodeport1](07-nodeport1.yaml)
 
 ```bash

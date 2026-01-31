@@ -1,11 +1,14 @@
-#Autor: Fagner Geraldes 
-#Data de criação: 02/04/2025  
-#Data de atualização: 02/04/2025  
-#Versão: 0.01  
+# Endpoint
 
-## Endpoint
+**Autor:** Fagner Geraldes Braga  
+**Data de criação:** 02/04/2025  
+**Data de atualização:** 31/01/2026  
+**Versão:** 0.02  
+
+## Criando um endpoint
 
 ### 08-endpoint.yaml
+
 [endpoint](08-endpoint.yaml)
 
 ```bash
@@ -22,7 +25,6 @@ kubectl get endpoints
 kubectl get pods -o wide
 
 kubectl get endpointslice
-
 ```
 
 ```bash

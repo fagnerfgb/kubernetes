@@ -1,9 +1,9 @@
-#Autor: Fagner Geraldes 
-#Data de criação: 02/04/2025  
-#Data de atualização: 02/04/2025  
-#Versão: 0.01  
+# Revisão
 
-## Revisão
+**Autor:** Fagner Geraldes Braga  
+**Data de criação:** 02/04/2025  
+**Data de atualização:** 31/01/2026  
+**Versão:** 0.02  
 
 ```bash
 kubectl get node

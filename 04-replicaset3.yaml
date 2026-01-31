@@ -3,7 +3,7 @@ kind: ReplicaSet
 metadata:
   name: meureplicaset
 spec:
-  replicas: 1
+  replicas: 10
   selector:
     matchLabels:
       app: web
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: kubedevio/web-color:green
+        image: kubedevio/web-color:blue
         ports:
         - name: http
           containerPort: 80

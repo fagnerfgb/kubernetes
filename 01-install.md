@@ -1,9 +1,14 @@
-#Autor: Fagner Geraldes Braga  
-#Data de criação: 27/03/2025  
-#Data de atualização: 27/03/2025  
-#Versão: 0.01
+# Instalação
 
-### Kubectl
+**Autor:** Fagner Geraldes Braga  
+**Data de criação:** 27/03/2025  
+**Data de atualização:** 31/01/2026  
+**Versão:** 0.02  
+
+[Kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
+[K3d](https://k3d.io/stable/)
+
+## Kubectl
 
 ```bash
 sudo apt-get update
@@ -22,7 +27,7 @@ sudo apt-get update
 sudo apt-get install -y kubectl
 ```
 
-### K3d
+## K3d
 
 ```bash
 wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
