@@ -7,6 +7,8 @@
 
 ## Criando um endpoint
 
+[Endpoint Slice](https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/)
+
 ### 08-endpoint.yaml
 
 [endpoint](08-endpoint.yaml)

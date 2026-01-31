@@ -5,6 +5,8 @@
 **Data de atualização:** 31/01/2026  
 **Versão:** 0.02  
 
+[Service](https://kubernetes.io/docs/concepts/services-networking/service/)
+
 ## ClusterIP
 
 ### 07-clusterip.yaml

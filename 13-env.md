@@ -5,6 +5,10 @@
 **Data de atualização:** 31/01/2026  
 **Versão:** 0.02  
 
+[Env](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/)
+[ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/)
+[Secret](https://kubernetes.io/docs/concepts/configuration/secret/)
+
 ## Env
 
 ```bash

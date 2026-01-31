@@ -5,6 +5,8 @@
 **Data de atualização:** 31/01/2026  
 **Versão:** 0.03  
 
+[KubeAdm Install](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
+
 ```bash
 sudo swapoff -a
 sudo vim /etc/fstab
