@@ -13,14 +13,19 @@
 
 ```bash
 k3d cluster create meucluster --servers 3 --agents 3
-kubectl apply -f 07-clusterip.yaml
-watch 'kubectl get svc,po'
-kubectl run prompt -it --image ubuntu -- /bin/bash
+kubectl apply -f 07-clusterip.yaml && watch 'kubectl get all'
+kubectl get svc
+
+IP=$(kubectl get service webcolor -o wide | awk 'NR>1 {print $3}')
+URL="http://${IP}"
+echo "$URL"
+
+kubectl run curl -it --rm --image fabricioveronez/ubuntu-curl -- /bin/bash
 ```
 
 ```bash
-apt update && apt install curl -y
-curl http://10.42.3.4
+# colar valor da variável URL
+curl 
 curl http://webcolor
 exit
 ```
@@ -36,10 +41,11 @@ kubectl delete -f 07-clusterip.yaml
 [nodeport](07-nodeport.yaml)
 
 ```bash
-kubectl apply -f 07-nodeport.yaml
-kubectl get service
-docker inspect k3d-meucluster-agent-0 | grep IPAddress
-kubectl get service webcolor
+kubectl apply -f 07-nodeport.yaml && watch 'kubectl get all'
+IP=$(kubectl get node k3d-meucluster-agent-0 -o wide | awk 'NR>1 {print $6}')
+PORT=$(kubectl get service webcolor -o jsonpath='{.spec.ports[0].nodePort}')
+URL="http://${IP}:${PORT}"
+echo "$URL"
 kubectl delete -f 07-nodeport.yaml
 k3d cluster delete meucluster
 ```
@@ -52,12 +58,11 @@ k3d cluster delete meucluster
 k3d cluster create meucluster --servers 3 --agents 3 -p "30000:30000@loadbalancer"
 kubectl get no
 docker container ls
-kubectl apply -f 07-nodeport1.yaml
-kubectl run prompt --rm -it --image ubuntu -- /bin/bash
+kubectl apply -f 07-nodeport1.yaml && watch 'kubectl get all'
+kubectl run curl -it --rm --image fabricioveronez/ubuntu-curl -- /bin/bash
 ```
 
 ```bash
-apt update && apt install curl -y
 curl webcolor
 exit
 ```

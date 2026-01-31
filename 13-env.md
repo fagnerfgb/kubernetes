@@ -1,28 +1,24 @@
-#Autor: Fagner Geraldes 
-#Data de criação: 15/10/2025  
-#Data de atualização: 15/10/2025  
-#Versão: 0.01  
+# Variáveis de Ambiente
+
+**Autor:** Fagner Geraldes Braga  
+**Data de criação:** 15/10/2025  
+**Data de atualização:** 31/01/2026  
+**Versão:** 0.02  
 
 ## Env
 
 ```bash
 k3d cluster create fgb-cluster --servers 3 --agents 3 -p "30000:30000@loadbalancer"
-```
-```bash
-kubectl apply -f 13-env.yaml
-watch 'kubectl get pods'
+kubectl apply -f 13-env.yaml && watch 'kubectl get all'
 ```
 
 ## ConfigMap
 
-```bash
-kubectl get configmap
-```
-
 ### Linha de comando
 
 ```bash
-kubectl create configmap app-config --from-literal=APP_NAME="Aplicacao ConfigMap"
+kubectl get configmap
+kubectl create configmap app-config --from-literal=APP_NAME="Aplicação ConfigMap"
 kubectl get configmap
 kubectl describe configmap app-config
 kubectl delete configmap app-config
@@ -35,7 +31,7 @@ kubectl describe configmap app-config
 kubectl delete configmap app-config
 ```
 
-### Manifesto
+## Manifesto
 
 ```bash
 kubectl apply -f 13-configmap.yaml
@@ -44,26 +40,29 @@ kubectl describe configmap app-config
 kubectl delete configmap app-config
 ```
 
-### ConfigMap definido por referência
+## ConfigMap definido por referência
+
 ```bash
 kubectl apply -f 13-configmap.yaml
-kubectl apply -f 13-deploy-configmap-referencia.yaml
+kubectl apply -f 13-deploy-configmap-referencia.yaml && watch 'kubectl get all'
 kubectl delete -f 13-deploy-configmap-referencia.yaml
 kubectl delete configmap app-config
 ```
 
-### ConfigMap definido por valor
+## ConfigMap definido por valor
+
 ```bash
 kubectl apply -f 13-configmap-valor.yaml
-kubectl apply -f 13-deploy-configmap-valor.yaml
+kubectl apply -f 13-deploy-configmap-valor.yaml && watch 'kubectl get all'
 kubectl delete -f 13-deploy-configmap-valor.yaml
 kubectl delete configmap app-config
 ```
 
-### Secrets
+## Secrets
+
 ```bash
 kubectl get secrets
-kubectl create secret generic app-secret --from-literal=APP_NAME="Minha Aplicacao 2.0" --from-literal=APP_VERSION="5.0"
+kubectl create secret generic app-secret --from-literal=APP_NAME="Minha Aplicação 2.0" --from-literal=APP_VERSION="5.0"
 kubectl get secrets
 kubectl describe secret app-secret
 kubectl get secret -o yaml
@@ -72,7 +71,7 @@ kubectl delete secret app-secret
 ```
 
 ```bash
-echo -n "Aplicacao Secret" | base64
+echo -n "Aplicação Secret" | base64
 echo -n "Versao 7.0" | base64
 echo -n "FGB" | base64
 kubectl apply -f 13-secret.yaml
@@ -82,6 +81,7 @@ kubectl delete secret app-secret
 ```
 
 ### Secret definido por referência
+
 ```bash
 kubectl apply -f 13-secret.yaml
 kubectl apply -f 13-deploy-secret-referencia.yaml
@@ -90,13 +90,11 @@ kubectl delete secret app-secret
 ```
 
 ### Secret definido por valor
+
 ```bash
 kubectl apply -f 13-secret-valor.yaml
 kubectl apply -f 13-deploy-secret-valor.yaml
 kubectl delete -f 13-deploy-secret-valor.yaml
 kubectl delete secret app-secret
-```
-
-```bash
 k3d cluster delete fgb-cluster
 ```

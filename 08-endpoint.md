@@ -13,18 +13,7 @@
 
 ```bash
 k3d cluster create meucluster --servers 3 --agents 3 -p "30000:30000@loadbalancer"
-
-kubectl apply -f 08-endpoint.yaml
-
-kubectl get po
-
-kubectl get svc
-
-kubectl get endpoints
-
-kubectl get pods -o wide
-
-kubectl get endpointslice
+kubectl apply -f 08-endpoint.yaml && watch 'kubectl get rs,svc,endpoints,endpointslice'
 ```
 
 ```bash

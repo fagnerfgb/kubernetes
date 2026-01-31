@@ -4,5 +4,5 @@ metadata:
   name: app-config
 data:
   APP_NAME_CONFIG: "ConfigMap Manifesto"
-  APP_VERSION_CONFIG: "6.0"
-  APP_AUTHOR_CONFIG: "Natalia"
+  APP_VERSION_CONFIG: "8.0"
+  APP_AUTHOR_CONFIG: "NPA"
