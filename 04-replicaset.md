@@ -17,7 +17,6 @@
 
 ```bash
 k3d cluster create meucluster --servers 3 --agents 3
-
 kubectl apply -f 04-replicaset.yaml && watch 'kubectl get rs,po'
 kubectl describe rs,po
 ```

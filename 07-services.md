@@ -13,21 +13,15 @@
 
 ```bash
 k3d cluster create meucluster --servers 3 --agents 3
-
 kubectl apply -f 07-clusterip.yaml
-
 watch 'kubectl get svc,po'
-
 kubectl run prompt -it --image ubuntu -- /bin/bash
 ```
 
 ```bash
 apt update && apt install curl -y
-
 curl http://10.42.3.4
-
 curl http://webcolor
-
 exit
 ```
 
@@ -43,15 +37,10 @@ kubectl delete -f 07-clusterip.yaml
 
 ```bash
 kubectl apply -f 07-nodeport.yaml
-
 kubectl get service
-
 docker inspect k3d-meucluster-agent-0 | grep IPAddress
-
 kubectl get service webcolor
-
 kubectl delete -f 07-nodeport.yaml
-
 k3d cluster delete meucluster
 ```
 
@@ -61,21 +50,15 @@ k3d cluster delete meucluster
 
 ```bash
 k3d cluster create meucluster --servers 3 --agents 3 -p "30000:30000@loadbalancer"
-
 kubectl get no
-
 docker container ls
-
 kubectl apply -f 07-nodeport1.yaml
-
 kubectl run prompt --rm -it --image ubuntu -- /bin/bash
 ```
 
 ```bash
 apt update && apt install curl -y
-
 curl webcolor
-
 exit
 ```
 
