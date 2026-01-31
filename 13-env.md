@@ -31,7 +31,7 @@ kubectl describe configmap app-config
 kubectl delete configmap app-config
 ```
 
-## Manifesto
+### Manifesto
 
 ```bash
 kubectl apply -f 13-configmap.yaml
@@ -40,7 +40,7 @@ kubectl describe configmap app-config
 kubectl delete configmap app-config
 ```
 
-## ConfigMap definido por referência
+### ConfigMap definido por referência
 
 ```bash
 kubectl apply -f 13-configmap.yaml
@@ -49,7 +49,7 @@ kubectl delete -f 13-deploy-configmap-referencia.yaml
 kubectl delete configmap app-config
 ```
 
-## ConfigMap definido por valor
+### ConfigMap definido por valor
 
 ```bash
 kubectl apply -f 13-configmap-valor.yaml
@@ -83,8 +83,8 @@ kubectl delete secret app-secret
 ### Secret definido por referência
 
 ```bash
-kubectl apply -f 13-secret.yaml
-kubectl apply -f 13-deploy-secret-referencia.yaml
+kubectl apply -f 13-secret.yaml 
+kubectl apply -f 13-deploy-secret-referencia.yaml && watch 'kubectl get all'
 kubectl delete -f 13-deploy-secret-referencia.yaml
 kubectl delete secret app-secret
 ```
@@ -93,7 +93,7 @@ kubectl delete secret app-secret
 
 ```bash
 kubectl apply -f 13-secret-valor.yaml
-kubectl apply -f 13-deploy-secret-valor.yaml
+kubectl apply -f 13-deploy-secret-valor.yaml && watch 'kubectl get all'
 kubectl delete -f 13-deploy-secret-valor.yaml
 kubectl delete secret app-secret
 k3d cluster delete fgb-cluster
