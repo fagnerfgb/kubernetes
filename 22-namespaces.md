@@ -1,11 +1,14 @@
-#Autor: Fagner Geraldes 
-#Data de criação: 13/11/2025  
-#Data de atualização: 13/11/2025  
-#Versão: 0.01  
+# Namespaces
 
-## Namespaces
+**Autor:** Fagner Geraldes Braga  
+**Data de criação:** 13/11/2025  
+**Data de atualização:** 01/02/2026  
+**Versão:** 0.02  
 
-### Criação
+[Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
+[Share a cluster with namespaces](https://kubernetes.io/docs/tasks/administer-cluster/namespaces/)
+
+## Criação
 
 ```bash
 k3d cluster create meucluster --servers 3 --agents 3 -p "30000:30000@loadbalancer"
@@ -17,7 +20,7 @@ kubectl apply -f 22-namespace.yaml
 kubectl get namespace
 ```
 
-### Criando objetos
+## Criando objetos
 
 ```bash
 kubectl apply -f 22-namespace-obj.yaml
@@ -44,10 +47,10 @@ kubectl port-forward service/web 8181:80 -n homologacao
 kubectl delete namespace homologacao
 ```
 
-### Comunicação entre namespaces (DNS)
+## Comunicação entre namespaces (DNS)
+
 ```bash
-kubectl run curl --rm -it --image ubuntu -- /bin/bash
-apt update && apt install curl -y
+kubectl run curl --rm -it --image fabricioveronez/ubuntu-curl -- /bin/bash
 curl http://web
 curl http://web.producao.svc.cluster.local
 ```

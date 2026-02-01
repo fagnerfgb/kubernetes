@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: fagnerfgb/web-color:green
+        image: fagnerfgb/web-color-priv:green
         ports:
         - name: http
           containerPort: 80

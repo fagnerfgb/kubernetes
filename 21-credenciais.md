@@ -1,11 +1,13 @@
-#Autor: Fagner Geraldes 
-#Data de criação: 12/11/2025  
-#Data de atualização: 12/11/2025  
-#Versão: 0.01  
+# Repositórios privados
 
-### Repositórios privados
+**Autor:** Fagner Geraldes Braga  
+**Data de criação:** 12/11/2025  
+**Data de atualização:** 01/02/2026  
+**Versão:** 0.02  
 
-### Montando o repositório privado
+[Repositórios privados](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/)
+
+## Montando o repositório privado
 
 ```bash
 docker pull fabricioveronez/web-color:blue
@@ -19,7 +21,8 @@ docker pull fagnerfgb/web-color-priv:blue && docker pull fagnerfgb/web-color-pri
 docker login
 docker pull fagnerfgb/web-color-priv:blue && docker pull fagnerfgb/web-color-priv:green
 ```
-### Criação das credenciais
+
+## Criação das credenciais
 
 ```bash
 k3d cluster create meucluster --servers 3 --agents 3 -p "30000:30000@loadbalancer"
@@ -28,14 +31,12 @@ kubectl get secret
 kubectl get secret docker-auth -o yaml
 ```
 
-### Criacao do deployment com autenticacao
+### Criação do deployment com autenticação
 
 ```bash
-kubectl apply -f 21-privado.yaml && watch 'kubectl get pods'
+kubectl apply -f 21-privado.yaml && watch 'kubectl get all'
 kubectl describe pod
 kubectl delete -f 21-privado.yaml
 kubectl delete secret docker-auth
 k3d cluster delete meucluster
 ```
-
-

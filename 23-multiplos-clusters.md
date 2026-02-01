@@ -1,39 +1,35 @@
-#Autor: Fagner Geraldes 
-#Data de criação: 13/11/2025  
-#Data de atualização: 13/11/2025  
-#Versão: 0.01  
+# Múltiplos clusters
 
-## Múltiplos cluster
+**Autor:** Fagner Geraldes Braga  
+**Data de criação:** 13/11/2025  
+**Data de atualização:** 01/02/2026  
+**Versão:** 0.02  
 
-### Escolhendo o KubeConfig
+[Múltiplos clusters](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)
+[Kubectx e Kubens](https://github.com/ahmetb/kubectx)
+
+## Escolhendo o KubeConfig
 
 ```bash
 k3d cluster create producao --servers 2 --agents 1 -p "30000:30000@loadbalancer"
-
 k3d cluster create homologacao --servers 2 --agents 1 -p "31000:31000@loadbalancer"
-
 cat  ~/.kube/config
-
 k3d kubeconfig get producao > 23-k8s-prod-kubeconfig.yaml
 k3d kubeconfig get homologacao > 23-k8s-homolog-kubeconfig.yaml
-
 kubectl get nodes --kubeconfig ./23-k8s-homolog-kubeconfig.yaml
 kubectl get nodes --kubeconfig ./23-k8s-prod-kubeconfig.yaml
 ```
 
-### Merge do KubeConfig
+## Merge do KubeConfig
 
 ```bash
 KUBECONFIG=./23-k8s-prod-kubeconfig.yaml kubectl get nodes
-
 KUBECONFIG=./23-k8s-prod-kubeconfig.yaml:./23-k8s-homolog-kubeconfig.yaml kubectl config view --flatten
-
 KUBECONFIG=./23-k8s-prod-kubeconfig.yaml:./23-k8s-homolog-kubeconfig.yaml kubectl config view --flatten > 23-merge-config.yaml
-
 cp ./23-merge-config.yaml ~/.kube
 ```
 
-### kubectl config
+## kubectl config
 
 ```bash
 kubectl config
@@ -55,16 +51,13 @@ kubectl get deploy
 kubectl get deploy -n kube-system
 ```
 
-### kubectx e kubens
+## kubectx e kubens
 
 ```bash
 sudo apt update && sudo apt install kubectx -y
-
 kubectx
 kubectx k3d-homologacao
 kubectx -
-
-
 kubens
 kubens kube-system
 kubectl get deploy
@@ -73,6 +66,5 @@ kubectl get deploy
 kubens -
 kubens app-abc
 kubectl get deploy
-
 k3d cluster delete producao && k3d cluster delete homologacao
 ```
