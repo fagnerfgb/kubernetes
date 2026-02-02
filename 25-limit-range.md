@@ -1,20 +1,20 @@
-#Autor: Fagner Geraldes 
-#Data de criação: 23/11/2025  
-#Data de atualização: 23/11/2025  
-#Versão: 0.01  
+# LimitRange
 
-## LimitRange
+**Autor:** Fagner Geraldes Braga  
+**Data de criação:** 23/11/2025  
+**Data de atualização:** 01/02/2026  
+**Versão:** 0.02  
 
-### Valor Padrão
+[LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/)
+
+## Valor Padrão
 
 ```bash
 k3d cluster create meucluster --servers 3 --agents 3 -p "30000:30000@loadbalancer"
-
 kubectl apply -f 25-deploy-limit-range.yaml
 watch 'kubectl get pod'
 kubectl describe pod
 kubectl delete -f 25-deploy-limit-range.yaml
-
 kubectl apply -f 25-limit-range.yaml
 kubectl apply -f 25-deploy-limit-range.yaml
 kubectl describe pod | grep Limits: -A 5
@@ -24,7 +24,7 @@ kubectl delete -f 25-deploy-limit-range.yaml
 kubectl delete -f 25-limit-range.yaml
 ```
 
-### Valores Mínimos e Máximos
+## Valores Mínimos e Máximos
 
 ```bash
 kubectl apply -f 25-limit-range2.yaml

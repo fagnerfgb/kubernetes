@@ -1,16 +1,18 @@
-#Autor: Fagner Geraldes 
-#Data de criação: 13/11/2025  
-#Data de atualização: 13/11/2025  
-#Versão: 0.01  
+# Resources
 
-## Resources
+**Autor:** Fagner Geraldes Braga  
+**Data de criação:** 13/11/2025  
+**Data de atualização:** 01/02/2026  
+**Versão:** 0.02  
 
-### Metrics Server
+[Resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+[QoS](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/)
+
+## Instalação do Metrics Server
+
+[Metrics Server](https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml)
+
 ```bash
-# https://github.com/kubernetes-sigs/metrics-server
-
-# wget https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
-
 k3d cluster create meucluster --servers 3 --agents 3 -p "30000:30000@loadbalancer"
 kubectl apply -f 24-components.yaml
 watch 'kubectl get pod -n kube-system'
@@ -19,7 +21,7 @@ kubectl top pod
 kubectl top pod -n kube-system
 ```
 
-### Resource Limits - CPU
+## Resource Limits - CPU
 
 ```bash
 # Estrangulamento da aplicação
@@ -33,7 +35,7 @@ watch 'kubectl top pod'
 kubectl delete -f 24-resources-cpu.yaml
 ```
 
-### Resource Limits - RAM
+## Resource Limits - RAM
 
 ```bash
 # Aplicação é restartada
@@ -46,7 +48,7 @@ watch 'kubectl top pod'
 kubectl delete -f 24-resources-ram.yaml
 ```
 
-### Resource Requests
+## Resource Requests
 
 ```bash
 kubectl apply -f 24-resources-requests.yaml
@@ -66,7 +68,7 @@ kubectl describe pod | grep memory:  -B 2 -A 2
 kubectl delete -f 24-resources-requests2.yaml
 ```
 
-### QOS
+## QOS
 
 ### Guaranteed
 
@@ -77,7 +79,7 @@ kubectl describe pod | grep 'QoS Class:'
 kubectl delete -f 24-qos-guaranteed.yaml
 ```
 
-### Burstable
+## Burstable
 
 ```bash
 kubectl apply -f 24-qos-burstable.yaml
@@ -85,7 +87,7 @@ kubectl describe pod | grep 'QoS Class:'
 kubectl delete -f 24-qos-burstable.yaml
 ```
 
-### Best Effort
+## Best Effort
 
 ```bash
 kubectl apply -f 24-qos-best-effort.yaml

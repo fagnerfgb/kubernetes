@@ -1,19 +1,19 @@
-#Autor: Fagner Geraldes 
-#Data de criação: 23/11/2025  
-#Data de atualização: 23/11/2025  
-#Versão: 0.01  
+# Resource Quotas
 
-## Quotas
+**Autor:** Fagner Geraldes Braga  
+**Data de criação:** 23/11/2025  
+**Data de atualização:** 01/02/2026  
+**Versão:** 0.02  
 
-### Limitando Recursos
+[Resource Quotas](https://kubernetes.io/docs/concepts/policy/resource-quotas/)
+
+## Limitando Recursos
 
 ```bash
 k3d cluster create meucluster --servers 3 --agents 3 -p "30000:30000@loadbalancer"
-
 kubectl apply -f 26-quota.yaml
 kubectl get resourcequota
 kubectl describe resourcequota recurso-computacional
-
 kubectl apply -f 26-deploy-quota.yaml
 kubectl get pod
 kubectl describe resourcequota recurso-computacional
@@ -44,7 +44,7 @@ kubectl delete -f 26-deploy-quota3.yaml
 kubectl delete -f 26-quota.yaml
 ```
 
-### Limitando Objetos
+## Limitando Objetos
 
 ```bash
 kubectl apply -f 26-quota2.yaml
